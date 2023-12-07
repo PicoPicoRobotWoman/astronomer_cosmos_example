@@ -1,0 +1,35 @@
+name: 'dbt_pet'
+version: '1.0.0'
+config-version: 2
+
+profile: 'dbt_pet'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_pet:
+    base-metrics-total:
+      +materialized: view
+    sticky_factors:
+      +materialized: view 
+    user_loads:
+      +materialized: view  
+    converted_users:
+      +materialized: view
+    monitization_metrics:
+      +materialized: view   
+
+vars:
+  start_date: "2023-01-01"
+  end_date: "2023-01-9"
+  ccu_duration_function: "toStartOfFiveMinute"
+
